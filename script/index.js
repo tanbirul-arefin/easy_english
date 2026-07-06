@@ -1,4 +1,7 @@
-const loadlessons = () => {
+// 33 ar 5 api ar a cara ar kora hoi nai ..
+
+
+const loadlessons = (id) => {
    fetch("https://openapi.programming-hero.com/api/levels/all")
    .then((res) => res.json())
    .then((json) => displaylesson(json.data))
@@ -6,7 +9,7 @@ const loadlessons = () => {
 
 const loadlevelword = (id) =>
 {
-   const url = `https://openapi.programming-hero.com/api/level/5`
+   const url = `https://openapi.programming-hero.com/api/level/${id}`
    
    fetch(url)
    .then((res) => res.json())
@@ -16,13 +19,27 @@ const loadlevelword = (id) =>
 const displevelworld = (words) => {
    
    const wordcontainer = document.getElementById("word-container");
-   // wordcontainer.innerHTML ="";
+   wordcontainer.innerHTML ="";
 
    words.forEach((word) => {
       console.log(word);
       const card = document.createElement("div");
       card.innerHTML = `
-      <p>cat</p> 
+      
+       <div class=" bg-white rounded-xl shadow-sm text-center py-10 px-5">
+      <h2 class="font-bold text-2xl">${word.word}</h2>
+      <p class="font-semibold my-2">Meaning /Pronounciation</p>
+      <div class="font-medium font_bangla">${word.meaning} / ${word.pronunci}"</div>
+
+      <div class="flex justify-between items-center">
+        <button class="btn bg-gray-400 hover:bg-gray-700"><i class="fa-solid fa-circle-info"></i>
+        </button>
+
+        <button class="btn bg-gray-400 hover:bg-gray-700"><i class="fa-solid fa-volume-low"></i>
+        </button>
+      </div>
+    </div>
+
       `;
       wordcontainer.append(card);
    });
